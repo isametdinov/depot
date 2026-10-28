@@ -1,0 +1,27 @@
+INSERT INTO warehouses (id, name, location)
+VALUES (
+    '11111111-1111-4111-8111-111111111111',
+    'Central Fulfillment Center',
+    'Main site'
+)
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO products (id, sku, name, description)
+VALUES
+    ('10000000-0000-4000-8000-000000000001', 'COF-1KG', 'Everyday Coffee Beans 1 kg', 'Whole-bean coffee, 1 kg bag'),
+    ('10000000-0000-4000-8000-000000000002', 'BTL-750', 'Stainless Steel Water Bottle', 'Insulated 750 ml bottle'),
+    ('10000000-0000-4000-8000-000000000003', 'MSE-WLS', 'Wireless Mouse', 'Wireless optical mouse'),
+    ('10000000-0000-4000-8000-000000000004', 'CBL-USBC-2M', 'USB-C Cable 2 m', 'Braided USB-C charging cable'),
+    ('10000000-0000-4000-8000-000000000005', 'NBK-A5', 'A5 Desk Notebook', 'Hardcover lined notebook'),
+    ('10000000-0000-4000-8000-000000000006', 'BAG-CANVAS', 'Canvas Tote Bag', 'Reusable canvas shopping bag')
+ON CONFLICT (id) DO NOTHING;
+
+INSERT INTO stock (warehouse_id, product_id, physical_quantity)
+VALUES
+    ('11111111-1111-4111-8111-111111111111', '10000000-0000-4000-8000-000000000001', 48),
+    ('11111111-1111-4111-8111-111111111111', '10000000-0000-4000-8000-000000000002', 32),
+    ('11111111-1111-4111-8111-111111111111', '10000000-0000-4000-8000-000000000003', 25),
+    ('11111111-1111-4111-8111-111111111111', '10000000-0000-4000-8000-000000000004', 60),
+    ('11111111-1111-4111-8111-111111111111', '10000000-0000-4000-8000-000000000005', 40),
+    ('11111111-1111-4111-8111-111111111111', '10000000-0000-4000-8000-000000000006', 20)
+ON CONFLICT (warehouse_id, product_id) DO NOTHING;
